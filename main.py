@@ -1,34 +1,40 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
-import math
+from app.schemas import EvaluateRequest
+from app.registry import list_problem_metadata, get_problem, validate_dimension
 
 app = FastAPI(title="Gradient Descent Secret Function API")
 
 
-class XInput(BaseModel):
-    x: float
+@app.get("/")
+def root():
+    return {"message": "Gradient Descent API", "try": "/docs"}
 
 
-def secret_function(x: float) -> float:
-    return (x - 3) ** 2 + 2 * math.sin(3 * x)
-
-
-def secret_gradient(x: float) -> float:
-    return 2 * (x - 3) + 6 * math.cos(3 * x)
+@app.get("/problems")
+def problems():
+    return list_problem_metadata()
 
 
 @app.post("/evaluate")
-def evaluate(data: XInput):
+def evaluate(request: EvaluateRequest):
+    problem = get_problem(request.problem_id)
+    validate_dimension(problem, request.x)
+
     return {
-        "x": data.x,
-        "y": secret_function(data.x),
+        "problem_id": request.problem_id,
+        "x": request.x,
+        "y": problem.function(request.x),
     }
 
 
 @app.post("/evaluate-with-gradient")
-def evaluate_with_gradient(data: XInput):
+def evaluate_with_gradient(request: EvaluateRequest):
+    problem = get_problem(request.problem_id)
+    validate_dimension(problem, request.x)
+
     return {
-        "x": data.x,
-        "y": secret_function(data.x),
-        "gradient": secret_gradient(data.x),
+        "problem_id": request.problem_id,
+        "x": request.x,
+        "y": problem.function(request.x),
+        "gradient": problem.gradient(request.x),
     }
