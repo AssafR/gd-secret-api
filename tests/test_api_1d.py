@@ -1,0 +1,29 @@
+import requests
+import pytest
+
+from service_ip import evaluate_url
+
+
+def _is_json_like(obj):
+    return isinstance(obj, (dict, list))
+
+
+def test_evaluate_default_x_returns_json():
+    print(f"Testing evaluate with url {evaluate_url}")
+    resp = requests.post(evaluate_url, json={"x": 2.5})
+    assert resp.status_code == 200
+    data = resp.json()
+    assert _is_json_like(data)
+
+
+def test_evaluate_parabola_1d_returns_json():
+    resp = requests.post(
+        evaluate_url,
+        json={
+            "problem_id": "parabola_1d",
+            "x": [2.5]
+        },
+    )
+    assert resp.status_code == 200
+    data = resp.json()
+    assert _is_json_like(data)
