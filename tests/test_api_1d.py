@@ -9,8 +9,10 @@ def _is_json_like(obj):
 
 
 def test_evaluate_default_x_returns_json():
-    print(f"Testing evaluate with url {evaluate_url}")
-    resp = requests.post(evaluate_url, json={"x": 2.5})
+    resp = requests.post(
+        evaluate_url,
+        json={"problem_id": "parabola_1d", "x": [2.5]},
+    )
     assert resp.status_code == 200
     data = resp.json()
     assert _is_json_like(data)
