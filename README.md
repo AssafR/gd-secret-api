@@ -9,3 +9,7 @@ problem.py    = Problem data structure
 functions.py  = math
 registry.py   = list of available exercises
 
+To run the server locally:
+
+```uv run uvicorn main:app --reload```
+
