@@ -15,7 +15,12 @@ class EvaluateResponse(BaseModel):
 class EvaluateWithGradientResponse(EvaluateResponse):
     gradient: list[float]
 
-
+class EvaluateVisualizationResponse(EvaluateWithGradientResponse):
+    accuracy: float | None = None
+    # list of points [[x,y], ...] for plotting
+    points: list[list[float]] | None = None
+    # the coefficients that were evaluated (same as request.x)
+    coefficients: list[float] | None = None
 class ProblemMetadata(BaseModel):
     name: str
     dimension: int

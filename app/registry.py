@@ -13,6 +13,8 @@ from app.functions import (
     stretched_bowl_2d_grad,
     wavy_1d,
     wavy_1d_grad,
+    quadratic_binary_loss,
+    quadratic_binary_grad,
 )
 from app.problem import Problem
 
@@ -59,6 +61,14 @@ PROBLEMS: dict[str, Problem] = {
         function=ridge_loss_100d,
         gradient=ridge_loss_100d_grad,
         description="A higher-dimensional hidden loss showing why analytical gradients scale better.",
+    ),
+    "quadratic_binary": Problem(
+        name="Hidden quadratic binary classification",
+        dimension=6,
+        function=quadratic_binary_loss,
+        gradient=quadratic_binary_grad,
+        description="A binary classification loss using a quadratic basis [1, x, y, x^2, y^2, x*y]. "
+        "Great for visualizing curved decision boundaries (ellipses, parabolas, hyperbolas).",
     ),
 }
 
