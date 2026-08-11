@@ -21,8 +21,11 @@ class EvaluateVisualizationResponse(EvaluateWithGradientResponse):
     points: list[list[float]] | None = None
     # the coefficients that were evaluated (same as request.x)
     coefficients: list[float] | None = None
+    
 class ProblemMetadata(BaseModel):
     name: str
     dimension: int
     description: str
+    input_description: str
+
     
