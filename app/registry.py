@@ -108,6 +108,7 @@ def list_problem_metadata():
             "name": problem.name,
             "dimension": problem.dimension,
             "description": problem.description,
+            "input_description": problem.input_description,
         }
         for problem_id, problem in PROBLEMS.items()
     }
