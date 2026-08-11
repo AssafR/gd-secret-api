@@ -26,6 +26,7 @@ PROBLEMS: dict[str, Problem] = {
         function=parabola_1d,
         gradient=parabola_1d_grad,
         description="Easy convex function. Good first gradient descent example.",
+        input_description="input: list of 1 float",
     ),
     "wavy_1d": Problem(
         name="Wavy 1D function",
@@ -33,6 +34,7 @@ PROBLEMS: dict[str, Problem] = {
         function=wavy_1d,
         gradient=wavy_1d_grad,
         description="Has local wiggles. Good for showing local minima and learning-rate issues.",
+        input_description="input: list of 1 float",
     ),
     "bowl_2d": Problem(
         name="Simple 2D bowl",
@@ -40,6 +42,7 @@ PROBLEMS: dict[str, Problem] = {
         function=bowl_2d,
         gradient=bowl_2d_grad,
         description="Easy 2D convex function. Good for visualizing movement on a surface.",
+        input_description="input: list of 2 floats",
     ),
     "stretched_bowl_2d": Problem(
         name="Stretched 2D bowl",
@@ -47,6 +50,7 @@ PROBLEMS: dict[str, Problem] = {
         function=stretched_bowl_2d,
         gradient=stretched_bowl_2d_grad,
         description="A narrow, ill-conditioned bowl. Good for showing scaling and step size sensitivity.",
+        input_description="input: list of 2 floats",
     ),
     "rosenbrock_2d": Problem(
         name="Rosenbrock function",
@@ -54,6 +58,7 @@ PROBLEMS: dict[str, Problem] = {
         function=rosenbrock_2d,
         gradient=rosenbrock_2d_grad,
         description="Classic optimization benchmark with a shallow valley and difficult curvature.",
+        input_description="input: list of 2 floats",
     ),
     "ridge_100d": Problem(
         name="Hidden 100D ridge regression loss",
@@ -61,6 +66,7 @@ PROBLEMS: dict[str, Problem] = {
         function=ridge_loss_100d,
         gradient=ridge_loss_100d_grad,
         description="A higher-dimensional hidden loss showing why analytical gradients scale better.",
+        input_description="input: list of 100 floats",
     ),
     "quadratic_binary": Problem(
         name="Hidden quadratic binary classification",
@@ -69,6 +75,7 @@ PROBLEMS: dict[str, Problem] = {
         gradient=quadratic_binary_grad,
         description="A binary classification loss using a quadratic basis [1, x, y, x^2, y^2, x*y]. "
         "Great for visualizing curved decision boundaries (ellipses, parabolas, hyperbolas).",
+        input_description="input: list of 6 floats",
     ),
 }
 

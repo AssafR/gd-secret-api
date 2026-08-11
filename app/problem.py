@@ -10,10 +10,12 @@ class Problem:
     function: Callable[[Sequence[float]], float]
     gradient: Optional[Callable[[Sequence[float]], list[float]]]
     description: str
+    input_description: str
 
     def metadata(self) -> dict[str, object]:
         return {
             "name": self.name,
             "dimension": self.dimension,
             "description": self.description,
+            "input_description": self.input_description,
         }
